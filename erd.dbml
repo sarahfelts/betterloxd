@@ -1,0 +1,54 @@
+Table users {
+  id integer [PK]
+  username varchar
+  password varchar
+  email varchar
+}
+
+Table movies {
+  id integer [PK]
+  title varchar
+  director_id integer [FK]
+  genre_id integer [FK]
+  releaseYear integer
+  description varchar
+  poster text
+}
+
+Table genres {
+  id integer [PK]
+  name varchar
+}
+
+Table directors {
+  id integer [PK]
+  name varchar
+}
+
+Table actors {
+  id integer [PK]
+  name varchar
+}
+
+Table movieCast {
+  id integer [PK]
+  movie_id integer [FK]
+  actor_id integer [FK]
+}
+
+Table reviews {
+  id integer [PK]
+  user_id integer [FK]
+  movie_id integer [FK]
+  rating float
+  text varchar
+  postDate timestamp
+}
+
+
+Ref:directors.id < movies.director_id
+Ref:movieCast.movie_id > movies.id
+Ref:movieCast.actor_id > actors.id
+Ref:genres.id < movies.genre_id
+Ref:reviews.user_id > users.id
+Ref:reviews.movie_id > movies.id

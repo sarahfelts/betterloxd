@@ -1,0 +1,19 @@
+/* styles.css (or create a separate CSS file for the homepage) */
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .movie-card {
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .movie-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
