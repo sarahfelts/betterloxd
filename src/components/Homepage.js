@@ -1,19 +1,33 @@
-import React from "react";
-import './src/styles/styles.css'
+import React, { useEffect, useState } from "react";
+import "./Homepage.css"
+import { getAllMovies } from "../services/movieServices.js";
+import { Link } from 'react-router-dom';
 
-function Homepage() {
+export function Homepage() {
+    const [allMovies, setAllMovies] = useState([])
+
+    useEffect(() => {
+        getAllMovies().then((moviesArray) => {
+            setAllMovies(moviesArray)
+        })
+    }, [])
+
     return (
       <div>
-        <h1>Welcome to the BetterLoxd</h1>
-        <div className="movie-list">
-          {movies.map((movie) => (
-            <div key={movie.id} className="movie-card">
-              <img src={movie.posterURL} alt={movie.title} />
-              <h2>{movie.title}</h2>
-              {/* Add more movie details as needed */}
+        <container>
+            <div className="movie-list">
+            {allMovies.map((movie) => (
+                <div key={movie.id} className="movie-card">
+                    <Link to={`/movie/${movie.id}`}>
+                        <img src={movie.poster} alt={movie.title} />
+                        <h2>{movie.title}</h2>
+                        {/* Add more movie details as needed */}
+                    </Link>
+                </div>
+            ))}
             </div>
-          ))}
-        </div>
+        </container>
+      
       </div>
     );
   }
